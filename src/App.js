@@ -3,20 +3,16 @@ import logo from './logo.svg'
 import './App.css'
 import Login from './Login'
 import SearchResult from './SearchResult'
-import { useToken } from './useToken'
 
 function App() {
-  const { token, setToken } = useToken();
-
-  if(!token) {
-    return <Login setToken={setToken} />
-  }
+  const getCode = new URLSearchParams(window.location.search)
+  const token = getCode.get("code")
   
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <SearchResult token={token} />
+          { token ? <SearchResult /> : <Login /> } 
       </header>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
-export default function SearchResult(token) {
+export default function SearchResult() {
   const [data, setData] = useState({})
 
   const fetchData = async() => {
@@ -10,11 +10,10 @@ export default function SearchResult(token) {
       const response = await axios.get('http://localhost:3001/api/v1/characters/search', {
         headers: {
           'Content-type': 'application/json',
-          'Authorization': `Bearer ${token.token}`
         },
       });
 
-      console.log(response)
+      // console.log(response)
 
       setData(response.data.data)
 
